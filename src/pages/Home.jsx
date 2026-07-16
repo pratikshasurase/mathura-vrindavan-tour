@@ -4,6 +4,10 @@ import TourHighlights from "../components/home/TourHighlights";
 import Itinerary from "../components/home/Itinerary";
 import HotelSection from "../components/home/HotelSection";
 import TempoTraveller from "../components/home/TempoTraveller";
+import PackageInclusions from "../components/home/PackageInclusions";
+import PackageExclusions from "../components/home/PackageExclusions";
+import GalleryPreview from "../components/home/GalleryPreview";
+import FAQSection from "../components/home/FaqSection";
 
 const Home = () => {
   return (
@@ -14,6 +18,10 @@ const Home = () => {
       <Itinerary />
       <HotelSection />
       <TempoTraveller />
+      <PackageInclusions />
+      <PackageExclusions />
+      <GalleryPreview />
+      <FAQSection />
     </>
   );
 };
