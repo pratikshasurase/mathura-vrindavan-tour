@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import MainLayout from "../components/layout/MainLayout";
 
@@ -10,7 +10,7 @@ import NotFound from "../pages/NotFound";
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter>
+    
       <Routes>
         {/* Main Layout */}
         <Route
@@ -51,7 +51,7 @@ const AppRoutes = () => {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    
   );
 };
 

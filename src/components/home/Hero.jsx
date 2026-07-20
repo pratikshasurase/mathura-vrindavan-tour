@@ -11,7 +11,7 @@ import { tourData } from "../../data/tourData";
 const Hero = () => {
   return (
     <section
-      className="relative min-h-screen bg-cover bg-center"
+      className="relative flex min-h-screen items-center bg-cover bg-center pt-20"
       style={{ backgroundImage: `url(${heroImage})` }}
     >
       {/* Overlay */}

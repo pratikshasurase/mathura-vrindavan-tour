@@ -1,78 +1,104 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { HiOutlineBars3, HiOutlineXMark } from "react-icons/hi2";
+import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { HiMenu, HiX } from "react-icons/hi";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "Gallery", path: "/gallery" },
   { name: "About", path: "/about" },
+  { name: "Gallery", path: "/gallery" },
   { name: "Contact", path: "/contact" },
 ];
 
-function Navbar() {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-orange-100 bg-white/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <header
+      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 shadow-lg backdrop-blur-md"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <div>
-          <h1 className="text-2xl font-bold text-orange-600">
-            🛕 Mathura Vrindavan Tour
-          </h1>
 
-          <p className="text-xs text-gray-500">
-            Divine Journey • 4 Nights / 5 Days
-          </p>
-        </div>
+        <Link
+          to="/"
+          className={`text-2xl font-extrabold transition ${
+            isScrolled ? "text-orange-600" : "text-white"
+          }`}
+        >
+          Mathura Vrindavan Tour
+        </Link>
 
         {/* Desktop Menu */}
+
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((item) => (
             <NavLink
-              key={item.path}
+              key={item.name}
               to={item.path}
               className={({ isActive }) =>
-                `font-medium transition ${
+                `font-semibold transition ${
                   isActive
-                    ? "text-orange-600"
-                    : "text-gray-700 hover:text-orange-600"
+                    ? "text-orange-500"
+                    : isScrolled
+                    ? "text-gray-700 hover:text-orange-500"
+                    : "text-white hover:text-orange-300"
                 }`
               }
             >
               {item.name}
             </NavLink>
           ))}
+
+          <Link
+            to="/contact"
+            className="rounded-xl bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600"
+          >
+            Book Now
+          </Link>
         </nav>
 
-        {/* Book Now Button */}
-        <button className="hidden rounded-lg bg-orange-600 px-5 py-2 text-white transition hover:bg-orange-700 md:block">
-          Book Now
-        </button>
+        {/* Mobile Button */}
 
-        {/* Mobile Menu Button */}
         <button
-          className="text-3xl text-orange-600 md:hidden"
           onClick={() => setIsOpen(!isOpen)}
+          className={`text-3xl md:hidden ${
+            isScrolled ? "text-black" : "text-white"
+          }`}
         >
-          {isOpen ? <HiOutlineXMark /> : <HiOutlineBars3 />}
+          {isOpen ? <HiX /> : <HiMenu />}
         </button>
       </div>
 
       {/* Mobile Menu */}
+
       {isOpen && (
-        <div className="border-t border-orange-100 bg-white md:hidden">
-          <nav className="flex flex-col p-5">
+        <div className="border-t bg-white shadow-lg md:hidden">
+          <nav className="flex flex-col px-6 py-6">
             {navLinks.map((item) => (
               <NavLink
-                key={item.path}
+                key={item.name}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                  `rounded-md px-3 py-3 transition ${
+                  `rounded-lg px-4 py-3 font-medium ${
                     isActive
                       ? "bg-orange-100 text-orange-600"
-                      : "hover:bg-orange-50"
+                      : "text-gray-700 hover:bg-orange-50"
                   }`
                 }
               >
@@ -80,14 +106,18 @@ function Navbar() {
               </NavLink>
             ))}
 
-            <button className="mt-4 rounded-lg bg-orange-600 py-3 text-white">
+            <Link
+              to="/contact"
+              onClick={() => setIsOpen(false)}
+              className="mt-5 rounded-xl bg-orange-500 py-3 text-center font-semibold text-white"
+            >
               Book Now
-            </button>
+            </Link>
           </nav>
         </div>
       )}
     </header>
   );
-}
+};
 
 export default Navbar;

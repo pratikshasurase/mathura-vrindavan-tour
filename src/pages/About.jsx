@@ -1,10 +1,31 @@
+import AboutHero from "../components/about/AboutHero";
+import AboutSection from "../components/about/AboutSection";
+import WhyChooseUs from "../components/about/WhyChooseUs";
+import TourHighlights from "../components/about/TourHighlights";
+import Statistics from "../components/about/Statistics";
+import CTASection from "../components/about/CTASection";
+import { Helmet } from "react-helmet-async";
+
 const About = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-green-100">
-      <h1 className="text-5xl font-bold text-green-600">
-        About Page
-      </h1>
-    </div>
+    <>
+
+<Helmet>
+  <title>About Us | Mathura Vrindavan Tour</title>
+
+  <meta
+    name="description"
+    content="Know more about our spiritual travel services and experienced team."
+  />
+</Helmet>
+
+      <AboutHero />
+      <AboutSection />
+      <WhyChooseUs />
+      <TourHighlights />
+      <Statistics />
+      <CTASection />
+    </>
   );
 };
 

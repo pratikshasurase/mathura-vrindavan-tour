@@ -1,10 +1,29 @@
+import ContactHero from "../components/contact/ContactHero";
+import ContactInfo from "../components/contact/ContactInfo";
+import ContactForm from "../components/contact/ContactForm";
+import GoogleMap from "../components/contact/GoogleMap";
+import FAQ from "../components/contact/FAQ";
+import { Helmet } from "react-helmet-async";
+
 const Contact = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-purple-100">
-      <h1 className="text-5xl font-bold text-purple-600">
-        Contact Page
-      </h1>
-    </div>
+    <>
+
+<Helmet>
+  <title>Contact Us | Mathura Vrindavan Tour</title>
+
+  <meta
+    name="description"
+    content="Contact us to book your Mathura and Vrindavan spiritual tour."
+  />
+</Helmet>
+
+      <ContactHero />
+      <ContactInfo />
+      <ContactForm />
+      <GoogleMap />
+      <FAQ />
+    </>
   );
 };
 

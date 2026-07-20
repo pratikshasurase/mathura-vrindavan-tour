@@ -1,10 +1,23 @@
+import GalleryHero from "../components/gallery/GalleryHero";
+import GalleryGrid from "../components/gallery/GalleryGrid";
+import { Helmet } from "react-helmet-async";
+
 const Gallery = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-blue-100">
-      <h1 className="text-5xl font-bold text-blue-600">
-        Gallery Page
-      </h1>
-    </div>
+    <>
+
+      <Helmet>
+        <title>Gallery | Mathura Vrindavan Tour</title>
+
+        <meta
+          name="description"
+          content="Explore beautiful photos of Mathura, Vrindavan, Prem Mandir, Banke Bihari Temple and more."
+        />
+      </Helmet>
+
+      <GalleryHero />
+      <GalleryGrid />
+    </>
   );
 };
 
